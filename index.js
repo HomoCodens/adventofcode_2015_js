@@ -1,32 +1,17 @@
-const fs = require('fs').promises;
+const {solveDay, dayDriver} = require('./utils');
 
-var startDay = 1;
-var endDay = 25;
-const dayParam = process.argv[2];
+let startDay = 1;
+let endDay = 25;
+const startDayParam = Number.parseInt(process.argv[2]);
+const endDayParam = Number.parseInt(process.argv[3]);
 
-console.log(dayParam);
-
-if(dayParam !== undefined) {
-  startDay = dayParam;
-  endDay = dayParam;
+if(!Number.isNaN(startDayParam)) {
+  startDay = startDayParam;
+  if(!Number.isNaN(endDayParam)) {
+    endDay = endDayParam;
+  } else {
+    endDay = startDayParam;
+  }
 }
 
-for(var day = startDay; day <= endDay; day++) {
-  const solver = require('./solvers/day' + day).solver;
-
-  fs.readFile('./inputs/day' + day + '.txt').then((input) => {
-    const output = solver(input);
-
-    console.log('=================================');
-    console.log(`Day ${day}:`)
-    console.log('=================================');
-
-    if(output !== null) {
-      console.log(output);
-    } else {
-      console.log('Solver not implemented yet!');
-    }
-  }).catch((e) => {
-    //console.log('Input not found!');
-  });
-}
+dayDriver(startDay, endDay);
