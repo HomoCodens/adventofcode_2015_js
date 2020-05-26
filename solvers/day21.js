@@ -14,13 +14,6 @@ const playerWins = (player, boss) => {
   const playerDmg = Math.max(player.dmg - boss.armour, 1);
   const bossDmg = Math.max(boss.dmg - player.armour, 1);
 
-  /*console.log(playerDmg);
-  console.log(bossDmg);
-  console.log(player.hp/bossDmg);
-  console.log(boss.hp/playerDmg);*/
-
-  //return player.hp/bossDmg >= boss.hp / playerDmg;
-
   let bossHP = boss.hp;
   let playerHP = player.hp;
   while(true) {
